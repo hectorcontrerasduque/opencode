@@ -240,6 +240,19 @@ export const DESKTOP_MENU: DesktopMenu[] = [
       {
         type: "item",
         labelKey: "desktop.menu.previousSession",
+        command: "tab.prev",
+        accelerator: { macos: "Cmd+Alt+Left", windows: "Ctrl+Shift+Tab" },
+      },
+      {
+        type: "item",
+        labelKey: "desktop.menu.nextSession",
+        command: "tab.next",
+        accelerator: { macos: "Cmd+Alt+Right", windows: "Ctrl+Tab" },
+      },
+      { type: "separator" },
+      {
+        type: "item",
+        labelKey: "desktop.menu.previousSession",
         command: "session.previous",
         accelerator: { macos: "Option+Up" },
       },

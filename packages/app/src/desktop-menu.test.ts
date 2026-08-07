@@ -2,6 +2,27 @@ import { describe, expect, test } from "bun:test"
 import { DESKTOP_MENU } from "./desktop-menu"
 
 describe("desktop menu", () => {
+  test("navigates between tabs", () => {
+    const items = DESKTOP_MENU.flatMap((menu) => menu.items ?? []).filter(
+      (item) => item.type === "item" && (item.command === "tab.prev" || item.command === "tab.next"),
+    )
+
+    expect(items).toEqual([
+      {
+        type: "item",
+        labelKey: "desktop.menu.previousSession",
+        command: "tab.prev",
+        accelerator: { macos: "Cmd+Alt+Left", windows: "Ctrl+Shift+Tab" },
+      },
+      {
+        type: "item",
+        labelKey: "desktop.menu.nextSession",
+        command: "tab.next",
+        accelerator: { macos: "Cmd+Alt+Right", windows: "Ctrl+Tab" },
+      },
+    ])
+  })
+
   test("exports logs through the desktop command registry", () => {
     const items = DESKTOP_MENU.flatMap((menu) => menu.items ?? []).filter(
       (item) => item.type === "item" && item.labelKey === "desktop.menu.exportLogs",
